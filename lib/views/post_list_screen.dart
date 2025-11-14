@@ -32,12 +32,12 @@ class PostListScreen extends StatelessWidget {
             ),
             onPressed: themeController.toggleTheme,
           ),
-          IconButton(
-            icon: const Icon(Icons.search, color: Colors.white),
-            onPressed: () {
-
-            },
-          ),
+          // IconButton(
+          //   icon: const Icon(Icons.search, color: Colors.white),
+          //   onPressed: () {
+          //
+          //   },
+          // ),
         ],
       ),
 

@@ -42,6 +42,17 @@ class PostActionController extends GetxController {
     }
     _storage.write('savedPosts', savedPosts);
   }
+  void clearAllLikes() {
+    likedPosts.clear();
+    _storage.write('likedPosts', []);
+  }
+
+  void clearAllSaved() {
+    savedPosts.clear();
+    _storage.write('savedPosts', []);
+  }
+
+
 
   bool isLiked(int postId) => likedPosts.contains(postId);
   bool isSaved(int postId) => savedPosts.contains(postId);

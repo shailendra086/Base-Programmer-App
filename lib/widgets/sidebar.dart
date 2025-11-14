@@ -1,3 +1,6 @@
+import 'package:baseprogrammer/views/about_app_screen.dart';
+import 'package:baseprogrammer/views/liked_posts_screen.dart';
+import 'package:baseprogrammer/views/saved_posts_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../controllers/theme_controller.dart';
@@ -16,6 +19,7 @@ class SideBar extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            // ✅ Header Section
             Container(
               width: double.infinity,
               padding: const EdgeInsets.all(20),
@@ -61,44 +65,60 @@ class SideBar extends StatelessWidget {
 
             const SizedBox(height: 10),
 
-            // 🧭 Menu Section
+            // ✅ Menu Section
             Expanded(
               child: ListView(
                 padding: EdgeInsets.zero,
                 children: [
+                  // ✅ Home
                   _drawerItem(
                     icon: Icons.home,
                     text: 'Home',
                     onTap: () => Get.back(),
                     context: context,
                   ),
-                  _drawerItem(
-                    icon: Icons.category,
-                    text: 'Categories',
-                    onTap: () {},
-                    context: context,
-                  ),
+
+                  // ✅ Saved Posts
                   _drawerItem(
                     icon: Icons.bookmark,
                     text: 'Saved Posts',
-                    onTap: () {},
+                    onTap: () {
+                      Get.back(); // close the drawer
+                      Get.to(() => const SavedPostsScreen(),
+                          transition: Transition.fadeIn);
+                    },
                     context: context,
                   ),
+
+                  // ✅ Liked Posts
                   _drawerItem(
                     icon: Icons.favorite,
                     text: 'Liked Posts',
-                    onTap: () {},
+                    onTap: () {
+                      Get.back();
+                      Get.to(() => const LikedPostsScreen(),
+                          transition: Transition.fadeIn);
+                    },
                     context: context,
                   ),
+
+                  // ✅ About
                   _drawerItem(
                     icon: Icons.info_outline,
                     text: 'About App',
-                    onTap: () {},
+                    onTap: () {
+                      Get.back();
+                      Get.to(() => const AboutAppScreen());
+                    },
                     context: context,
                   ),
+
+
                   const Divider(height: 30),
+
+                  // ✅ Theme Toggle
                   Obx(
-                    () => SwitchListTile(
+                        () => SwitchListTile(
                       title: const Text('Dark Mode'),
                       secondary: Icon(
                         themeController.isDarkMode
@@ -109,18 +129,21 @@ class SideBar extends StatelessWidget {
                       onChanged: (value) => themeController.toggleTheme(),
                     ),
                   ),
-                  _drawerItem(
-                    icon: Icons.logout,
-                    text: 'Exit',
-                    onTap: () => Get.back(),
-                    context: context,
-                  ),
+
+                  // // ✅ Exit
+                  // _drawerItem(
+                  //   icon: Icons.logout,
+                  //   text: 'Exit',
+                  //   onTap: () => Get.back(),
+                  //   context: context,
+                  // ),
                 ],
               ),
             ),
 
             const Divider(height: 1),
 
+            // ✅ Footer
             Container(
               width: double.infinity,
               padding: const EdgeInsets.all(12),
@@ -149,7 +172,7 @@ class SideBar extends StatelessWidget {
     );
   }
 
-  // 🔹 Helper function for drawer items
+  // ✅ Drawer Item Builder
   Widget _drawerItem({
     required IconData icon,
     required String text,
