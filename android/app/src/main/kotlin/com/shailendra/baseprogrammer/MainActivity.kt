@@ -1,4 +1,4 @@
-package com.example.baseprogrammer
+package com.shailendra.baseprogrammer
 
 import io.flutter.embedding.android.FlutterActivity
 

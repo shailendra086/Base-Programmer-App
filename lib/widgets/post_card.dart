@@ -71,14 +71,20 @@ child: const Icon(Icons.image_not_supported),
 }
 
 
-return ClipRRect(
-borderRadius: BorderRadius.circular(8),
-child: Image.network(
-post.imageUrl,
-width: 90,
-height: 70,
-fit: BoxFit.cover,
-),
-);
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(8),
+      child: Image.network(
+        post.imageUrl,
+        width: 90,
+        height: 70,
+        fit: BoxFit.cover,
+        errorBuilder: (context, error, stackTrace) => Container(
+          width: 90,
+          height: 70,
+          color: Colors.grey.shade200,
+          child: const Icon(Icons.broken_image),
+        ),
+      ),
+    );
 }
 }

@@ -86,7 +86,7 @@ class PostActionButtons extends StatelessWidget {
               color: colorScheme.primary,
               onTap: () {
                 Share.share(
-                    '${postTitle}\n\nRead more at: ${postLink}');
+                    '$postTitle\n\nRead more at: $postLink');
               },
             ),
           ],

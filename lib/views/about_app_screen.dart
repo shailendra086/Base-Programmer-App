@@ -21,12 +21,10 @@ class AboutAppScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final isDark = theme.brightness == Brightness.dark;
+
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("About App"),
-      ),
+      appBar: AppBar(title: const Text("About App")),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -37,11 +35,7 @@ class AboutAppScreen extends StatelessWidget {
               child: CircleAvatar(
                 radius: 50,
                 backgroundColor: theme.primaryColor.withOpacity(0.2),
-                child: Icon(
-                  Icons.apps,
-                  size: 50,
-                  color: theme.primaryColor,
-                ),
+                child: Icon(Icons.apps, size: 50, color: theme.primaryColor),
               ),
             ),
 
@@ -72,7 +66,7 @@ class AboutAppScreen extends StatelessWidget {
                 padding: const EdgeInsets.all(16),
                 child: Text(
                   "Base Programmer is a modern Flutter blog app powered by the WordPress REST API.\n\n"
-                      "This app provides tech tutorials, programming blogs, and real-time updates directly from BaseProgrammer.com.",
+                  "This app provides tech tutorials, programming blogs, and real-time updates directly from BaseProgrammer.com.",
                   textAlign: TextAlign.justify,
                   style: TextStyle(fontSize: 14, height: 1.4),
                 ),
@@ -94,8 +88,15 @@ class AboutAppScreen extends StatelessWidget {
                   children: [
                     CircleAvatar(
                       radius: 28,
-                      backgroundImage: const NetworkImage(
-                        "https://avatars.githubusercontent.com/u/86818577?v=4",
+                      child: ClipOval(
+                        child: Image.network(
+                          "https://avatars.githubusercontent.com/u/86818577?v=4",
+                          width: 56,
+                          height: 56,
+                          fit: BoxFit.cover,
+                          errorBuilder: (context, error, stackTrace) =>
+                              const Icon(Icons.person, size: 28),
+                        ),
                       ),
                     ),
                     const SizedBox(width: 15),
@@ -105,7 +106,9 @@ class AboutAppScreen extends StatelessWidget {
                         Text(
                           "Shailendra Sahani",
                           style: TextStyle(
-                              fontSize: 16, fontWeight: FontWeight.bold),
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                         SizedBox(height: 4),
                         Text(

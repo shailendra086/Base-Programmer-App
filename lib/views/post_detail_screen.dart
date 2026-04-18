@@ -1,3 +1,4 @@
+import 'package:baseprogrammer/services/ads/banner_ads.dart';
 import 'package:baseprogrammer/widgets/post_action_buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
@@ -28,6 +29,12 @@ class PostDetailScreen extends StatelessWidget {
                   post.imageUrl,
                   fit: BoxFit.cover,
                   width: double.infinity,
+                  errorBuilder: (context, error, stackTrace) => Container(
+                    height: 200,
+                    width: double.infinity,
+                    color: Colors.grey[300],
+                    child: const Icon(Icons.broken_image, size: 50, color: Colors.grey),
+                  ),
                 ),
               ),
             const SizedBox(height: 12),
@@ -123,11 +130,17 @@ class PostDetailScreen extends StatelessWidget {
           ],
         ),
       ),
-       bottomNavigationBar: PostActionButtons(
-    postId: post.id,
-    postTitle: post.title,
-    postLink: 'https://baseprogrammer.com/posts/${post.id}',
-  ),
+      bottomNavigationBar: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          const BannerAdsWidget(),
+          PostActionButtons(
+            postId: post.id,
+            postTitle: post.title,
+            postLink: 'https://baseprogrammer.com/posts/${post.id}',
+          ),
+        ],
+      ),
     );
   }
 }

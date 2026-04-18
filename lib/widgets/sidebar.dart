@@ -35,10 +35,17 @@ class SideBar extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const CircleAvatar(
+                  CircleAvatar(
                     radius: 35,
-                    backgroundImage: NetworkImage(
-                      'https://avatars.githubusercontent.com/u/86818577?v=4',
+                    child: ClipOval(
+                      child: Image.network(
+                        'https://avatars.githubusercontent.com/u/86818577?v=4',
+                        width: 70,
+                        height: 70,
+                        fit: BoxFit.cover,
+                        errorBuilder: (context, error, stackTrace) =>
+                            const Icon(Icons.person, size: 35),
+                      ),
                     ),
                   ),
                   const SizedBox(height: 12),

@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controllers/theme_controller.dart';
-import 'post_list_screen.dart';
+import '../routes/app_pages.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -19,7 +19,7 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     // ⏳ Navigate after 3 seconds
     Timer(const Duration(seconds: 3), () {
-      Get.off(() => const PostListScreen());
+      Get.offNamed(Routes.HOME);
     });
   }
 

@@ -63,9 +63,7 @@ class SavedPostsScreen extends StatelessWidget {
             .toList();
 
         if (savedPosts.isEmpty) {
-          return const Center(
-            child: Text("No saved posts yet 💾"),
-          );
+          return const Center(child: Text("No saved posts yet 💾"));
         }
 
         return ListView.builder(
@@ -78,14 +76,21 @@ class SavedPostsScreen extends StatelessWidget {
               child: ListTile(
                 leading: post.imageUrl.isNotEmpty
                     ? ClipRRect(
-                  borderRadius: BorderRadius.circular(8),
-                  child: Image.network(
-                    post.imageUrl,
-                    width: 70,
-                    height: 70,
-                    fit: BoxFit.cover,
-                  ),
-                )
+                        borderRadius: BorderRadius.circular(8),
+                        child: Image.network(
+                          post.imageUrl,
+                          width: 70,
+                          height: 70,
+                          fit: BoxFit.cover,
+                          errorBuilder: (context, error, stackTrace) =>
+                              Container(
+                                width: 70,
+                                height: 70,
+                                color: Colors.grey.shade200,
+                                child: const Icon(Icons.broken_image, size: 24),
+                              ),
+                        ),
+                      )
                     : const Icon(Icons.image),
                 title: Text(
                   post.title,
@@ -99,7 +104,6 @@ class SavedPostsScreen extends StatelessWidget {
                   icon: const Icon(Icons.delete, color: Colors.red),
                   onPressed: () {
                     actionController.toggleSave(post.id);
-
                   },
                 ),
 

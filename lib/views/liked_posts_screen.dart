@@ -82,6 +82,12 @@ class LikedPostsScreen extends StatelessWidget {
                     width: 70,
                     height: 70,
                     fit: BoxFit.cover,
+                    errorBuilder: (context, error, stackTrace) => Container(
+                      width: 70,
+                      height: 70,
+                      color: Colors.grey.shade200,
+                      child: const Icon(Icons.broken_image, size: 24),
+                    ),
                   ),
                 )
                     : const Icon(Icons.image),
